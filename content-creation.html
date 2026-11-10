@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Justin Poulido · Social Media Content</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a screening-room page. One big player up top, a clickable shot list beside it,
+   then the campaign work. Single committed theme: mango, ink and berry, taken from the ad's own fruit. */
+:root{
+  color-scheme:light;
+  --mango:#FFC93C; --ink:#1A1410; --paper:#FFF6E0; --berry:#C2185B; --berry-ink:#FFFFFF;
+  --soft:#5A4526; --rule:rgba(26,20,16,.22); --night-soft:#C9B894;
+  --display:"Anton","Arial Narrow","Impact",sans-serif;
+  --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"DM Mono",ui-monospace,Menlo,monospace;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--mango);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p,ol,ul,figure{margin:0}
+ol,ul{padding:0;list-style:none}
+img,video{max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--berry);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1140px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase}
+.disp{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:.95;letter-spacing:.005em;text-wrap:balance}
+
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px}
+.back{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;padding:9px 16px;border-radius:999px;border:2px solid var(--ink);transition:background .15s,color .15s}
+.back:hover{background:var(--ink);color:var(--mango)}
+.rec{display:inline-flex;align-items:center;gap:8px}
+.rec i{width:10px;height:10px;border-radius:50%;background:var(--berry);animation:blink 1.4s steps(2) infinite}
+@keyframes blink{50%{opacity:.25}}
+
+.hero .wrap{padding-block:clamp(20px,4vw,44px) clamp(28px,5vw,56px);display:flex;flex-direction:column;gap:18px}
+.hero h1{font-size:clamp(3.2rem,11.5vw,9rem)}
+.hero h1 em{font-style:normal;color:var(--berry)}
+.hero p{max-width:56ch;font-size:1.1rem;font-weight:500}
+
+.screen .wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(24px,4vw,44px);align-items:start;padding-bottom:clamp(48px,7vw,88px)}
+.player{background:var(--ink);border-radius:18px;padding:10px;box-shadow:12px 12px 0 var(--berry);min-width:0}
+.player video{display:block;width:100%;aspect-ratio:16/9;border-radius:10px;background:var(--ink)}
+.player figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;padding:12px 6px 4px;color:var(--night-soft)}
+.shots{display:flex;flex-direction:column;gap:14px;min-width:0}
+.shots h2{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+.shots>p{font-size:.95rem;color:var(--soft);font-weight:500}
+.shots ol{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
+.shot{display:grid;grid-template-columns:86px minmax(0,1fr);gap:12px;align-items:center;width:100%;text-align:left;padding:10px 8px 10px 0;border:0;border-bottom:1px solid var(--rule);background:transparent;transition:background .15s,padding .15s}
+.shot img{display:block;width:86px;height:auto;aspect-ratio:16/9;object-fit:cover;border-radius:6px;border:2px solid var(--ink)}
+.shot span{display:flex;flex-direction:column;gap:1px;min-width:0}
+.shot time{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em}
+.shot b{font-weight:700;line-height:1.25}
+.shot small{font-size:.86rem;color:var(--soft);line-height:1.35}
+.shot:hover{background:rgba(255,246,224,.5);padding-left:8px}
+.shot.on{background:var(--ink);color:var(--paper);padding-left:10px;border-radius:8px}
+.shot.on small{color:var(--night-soft)}
+.shot.on img{border-color:var(--berry)}
+
+.band{background:var(--paper)}
+.band .wrap,.camp .wrap{padding-block:clamp(48px,7vw,88px);display:flex;flex-direction:column;gap:30px}
+.band h2,.camp h2{font-size:clamp(2.2rem,6vw,4.2rem)}
+.lead{max-width:60ch;font-weight:500}
+.parts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:2px solid var(--ink)}
+.parts li{padding:20px 22px 22px 0;display:flex;flex-direction:column;gap:6px;border-bottom:1px solid var(--rule)}
+.parts h3{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.45rem;line-height:1.05;letter-spacing:.01em}
+.parts p{font-size:.95rem;color:var(--soft)}
+.parts li:hover h3{color:var(--berry)}
+
+.camp-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(28px,5vw,60px);align-items:start}
+.flow{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:3px solid var(--ink);margin-top:10px}
+.flow li{position:relative;padding:18px 14px 0 0;display:flex;flex-direction:column;gap:4px}
+.flow li::before{content:"";position:absolute;left:0;top:-9px;width:15px;height:15px;border-radius:50%;background:var(--mango);border:3px solid var(--ink)}
+.flow li:last-child::before{background:var(--berry);border-color:var(--berry)}
+.flow b{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:1.3rem;line-height:1.1}
+.flow span{font-size:.9rem;color:var(--soft);font-weight:500;line-height:1.4}
+.flow i{position:absolute;top:-7px;left:0;width:11px;height:11px;border-radius:50%;background:var(--berry);animation:travel 4.5s linear infinite}
+@keyframes travel{from{left:0;opacity:1}85%{opacity:1}to{left:calc(100% - 11px);opacity:0}}
+.nums{display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:26px}
+.nums div{display:flex;flex-direction:column}
+.nums b{font-family:var(--display);font-weight:400;font-size:clamp(2.6rem,6vw,4rem);line-height:1}
+.nums span{font-size:.88rem;font-weight:500;color:var(--soft)}
+.roles{display:flex;flex-direction:column;border-top:2px solid var(--ink)}
+.roles li{display:flex;flex-direction:column;gap:2px;padding:14px 0;border-bottom:1px solid var(--rule);transition:padding .18s,box-shadow .18s}
+.roles li:hover{padding-left:14px;box-shadow:inset 4px 0 0 var(--berry)}
+.roles small{font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--soft)}
+.roles b{font-size:1.1rem;line-height:1.25}
+.roles span{font-size:.95rem;color:var(--soft);line-height:1.45}
+
+.spec{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(22px,4vw,44px);align-items:center;background:var(--paper);border:2px solid var(--ink);border-radius:18px;padding:clamp(16px,3vw,30px);box-shadow:12px 12px 0 var(--ink);margin-top:14px}
+.spec figure{display:flex;flex-direction:column;gap:10px;min-width:0}
+.spec img{display:block;width:100%;height:auto;border-radius:10px}
+.spec figcaption{color:var(--soft)}
+.spec-body{display:flex;flex-direction:column;gap:12px;min-width:0}
+.spec h3{font-size:clamp(1.7rem,3.6vw,2.6rem)}
+.spec dl{margin:4px 0 0;border-top:2px solid var(--ink)}
+.spec dl div{display:grid;grid-template-columns:110px minmax(0,1fr);gap:12px;padding:8px 0;border-bottom:1px solid var(--rule)}
+.spec dt{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);padding-top:4px}
+.spec dd{margin:0;font-weight:700;font-variant-numeric:tabular-nums}
+.spec dd small{font-weight:500;font-size:.86rem;color:var(--soft);margin-left:6px}
+.spec .src{font-size:.82rem;color:var(--soft)}
+@media (max-width:860px){.spec{grid-template-columns:minmax(0,1fr);box-shadow:8px 8px 0 var(--ink)}}
+
+.lux{background:var(--ink);color:var(--paper)}
+.lux .wrap{padding-block:clamp(48px,7vw,88px);display:grid;grid-template-columns:330px minmax(0,1fr);gap:clamp(28px,6vw,72px);align-items:center}
+.phone{position:relative;width:min(100%,318px);margin:0 6px;padding:4px;border-radius:52px;
+  background:linear-gradient(135deg,#8E8A84 0%,#3B3936 22%,#6F6B66 50%,#2A2927 78%,#7C7872 100%);
+  box-shadow:0 0 0 1px #121110,0 34px 60px -18px rgba(0,0,0,.75),0 0 80px -30px var(--mango)}
+.phone .glass{position:relative;padding:9px;border-radius:48px;background:#050505;box-shadow:inset 0 0 0 1.5px #2B2A28}
+.phone video{display:block;width:100%;aspect-ratio:9/19.3;border-radius:40px;background:#000;object-fit:cover}
+.phone .cam{position:absolute;top:21px;left:50%;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#2C3440 0 22%,#06070A 55%);box-shadow:0 0 0 2px #0B0B0C;pointer-events:none}
+.phone::before,.phone::after{content:"";position:absolute;width:4px;border-radius:2px;background:linear-gradient(90deg,#2A2927,#77736D)}
+.phone::before{left:-4px;top:132px;height:34px;box-shadow:0 48px 0 #55524D,0 0 0 0 transparent}
+.phone::after{right:-4px;top:170px;height:68px;background:linear-gradient(270deg,#2A2927,#77736D)}
+.lux-body{display:flex;flex-direction:column;gap:16px;min-width:0}
+.lux-body .mono{color:var(--mango)}
+.lux h2{font-size:clamp(2.2rem,6vw,4.2rem)}
+.lux h2 em{font-style:normal;color:var(--mango)}
+.lux-body>p{color:var(--night-soft);max-width:56ch}
+.lux ol{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:24px;border-top:2px solid var(--paper);margin-top:6px}
+.lux .shot{grid-template-columns:44px minmax(0,1fr);border-bottom-color:rgba(255,246,224,.2);padding:11px 8px 11px 0}
+.lux .shot time{color:var(--mango);padding-top:2px}
+.lux .shot:hover{background:rgba(255,246,224,.08)}
+.lux .shot.on{background:var(--mango);color:var(--ink)}
+.lux .shot.on time{color:var(--ink)}
+.fin{background:var(--berry)}
+.fin .wrap{grid-template-columns:minmax(0,1fr) 330px}
+.fin .lux-body>p{color:#FBDDE9}
+.fin .facts span{border-color:rgba(255,246,224,.55)}
+.fin .shot{border-bottom-color:rgba(255,246,224,.35)}
+.fin .phone{box-shadow:0 0 0 1px #121110,0 34px 60px -18px rgba(0,0,0,.6)}
+@media (max-width:860px){.fin .wrap{grid-template-columns:minmax(0,1fr)}.fin .phone{order:-1}}
+.funnel{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:16px 18px;border-radius:14px;border:1px solid rgba(255,246,224,.3);background:rgba(255,246,224,.06)}
+.funnel p{font-size:.95rem;color:var(--night-soft);max-width:56ch}
+.funnel p b{color:var(--paper)}
+.site{display:inline-flex;padding:10px 18px;border-radius:999px;background:var(--mango);color:var(--ink);font-weight:700;text-decoration:none;transition:background .15s}
+.site:hover{background:var(--paper)}
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.facts span{font-family:var(--mono);font-size:.74rem;padding:6px 10px;border-radius:6px;border:1px solid rgba(255,246,224,.35)}
+@media (max-width:860px){.lux .wrap{grid-template-columns:minmax(0,1fr)}.phone{justify-self:center}}
+@media (max-width:480px){.lux ol{grid-template-columns:minmax(0,1fr)}}
+
+.end{background:var(--ink);color:var(--paper)}
+.end .wrap{padding-block:clamp(48px,7vw,88px);display:flex;flex-direction:column;gap:22px}
+.end h2{font-size:clamp(2.6rem,8.5vw,6.4rem)}
+.end h2 em{font-style:normal;color:var(--mango)}
+.end p{color:var(--night-soft);max-width:54ch}
+.reach{display:flex;flex-wrap:wrap;gap:12px}
+.reach code{font-family:var(--mono);font-size:clamp(.92rem,2.5vw,1.15rem);padding:12px 16px;border-radius:10px;border:1px solid rgba(255,246,224,.3);user-select:all;overflow-wrap:anywhere;min-width:0}
+.reach button{padding:12px 20px;border-radius:999px;border:0;background:var(--mango);color:var(--ink);font-weight:700}
+.reach button:hover{background:var(--paper)}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding-top:20px;border-top:1px solid rgba(255,246,224,.25);color:var(--night-soft)}
+.foot a{color:var(--paper)}
+
+@media (max-width:860px){.screen .wrap,.camp-grid{grid-template-columns:minmax(0,1fr)}.parts{grid-template-columns:repeat(2,minmax(0,1fr))}.player{box-shadow:8px 8px 0 var(--berry)}}
+@media (max-width:560px){.parts{grid-template-columns:minmax(0,1fr)}.flow{grid-template-columns:minmax(0,1fr);border-top:0;border-left:3px solid var(--ink);margin-left:8px}.flow li{padding:0 0 16px 24px}.flow li::before{left:-9px;top:4px}.flow i{display:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="back" href="./">← Justin Poulido</a>
+    <span class="mono rec"><i></i>Social Media Content</span>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <h1 class="disp">Video ads that <em>sell</em> real businesses</h1>
+    <p>I make video ads for social media, with AI tools and with real footage. A business gets a finished ad with a hook, captions and a clear call to action, ready to run as a paid campaign.</p>
+  </div>
+</section>
+
+<section class="screen">
+  <div class="wrap">
+    <figure class="player">
+      <video id="ad" controls playsinline preload="metadata" poster="media/poster.jpg">
+        <source src="media/amcol-space-ad.mp4" type="video/mp4">
+        Your browser cannot play this video.
+      </video>
+      <figcaption class="mono"><span>AMCOL · Commercial space for rent</span><span>21 sec · AI-generated ad</span></figcaption>
+    </figure>
+
+    <div class="shots">
+      <h2 class="disp">Shot list</h2>
+      <p>Five beats in 21 seconds. Select one to jump the video to it.</p>
+      <ol data-for="ad">
+        <li><button class="shot" type="button" data-t="0"><img src="media/beat1.jpg" alt="" width="480" height="270"><span><time>0:00</time><b>The hook</b><small>“Ever dreamed of opening your own smoothie bar?”</small></span></button></li>
+        <li><button class="shot" type="button" data-t="3.6"><img src="media/beat2.jpg" alt="" width="480" height="270"><span><time>0:04</time><b>Show the dream</b><small>Close-ups of fruit and a blender while the offer is named.</small></span></button></li>
+        <li><button class="shot" type="button" data-t="7.8"><img src="media/beat4.jpg" alt="" width="480" height="270"><span><time>0:08</time><b>The offer</b><small>“Prime location, flexible terms.”</small></span></button></li>
+        <li><button class="shot" type="button" data-t="10"><img src="media/beat5.jpg" alt="" width="480" height="270"><span><time>0:10</time><b>Call to action</b><small>The presenter gives the number to call.</small></span></button></li>
+        <li><button class="shot" type="button" data-t="14.2"><img src="media/beat6.jpg" alt="" width="480" height="270"><span><time>0:14</time><b>Branded end card</b><small>Logo, offer and phone number held on screen.</small></span></button></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="lux fin">
+  <div class="wrap">
+    <div class="lux-body">
+      <p class="mono">Hyper-realistic AI video ad · AMCOL Hardware</p>
+      <h2 class="disp">A presenter who <em>never existed</em></h2>
+      <p>A 39-second hyper-realistic AI video ad for AMCOL Hardware's in-store financing. An on-screen presenter walks through the store while animated graphics carry the numbers: the financing limit, the 48-hour approval and the documents to bring.</p>
+      <div class="facts"><span>9:16 vertical</span><span>39 sec</span><span>AI presenter</span><span>Animated graphics</span><span>Branded end card</span></div>
+      <ol data-for="fin">
+          <li><button class="shot" type="button" data-t="0"><time>0:00</time><b>Logo open</b></button></li>
+          <li><button class="shot" type="button" data-t="5"><time>0:05</time><b>Financing up to $40,000</b></button></li>
+          <li><button class="shot" type="button" data-t="10.5"><time>0:10</time><b>What it pays for</b></button></li>
+          <li><button class="shot" type="button" data-t="18"><time>0:18</time><b>Approval within 48 hours</b></button></li>
+          <li><button class="shot" type="button" data-t="22.5"><time>0:22</time><b>What you need to apply</b></button></li>
+          <li><button class="shot" type="button" data-t="34"><time>0:34</time><b>Apply in-store today</b></button></li>
+      </ol>
+    </div>
+    <figure class="phone">
+      <div class="glass">
+      <video id="fin" controls playsinline preload="metadata" poster="media/financing-poster.jpg">
+        <source src="media/amcol-financing-ad.mp4" type="video/mp4">
+        Your browser cannot play this video.
+      </video>
+      <span class="cam" aria-hidden="true"></span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="disp">What goes into one ad</h2>
+    <p class="lead">Take the commercial space ad at the top of this page. An empty unit for rent is hard to advertise, so the ad shows the business a tenant could open in it, and every part of that is something I put together.</p>
+    <ul class="parts">
+      <li><h3>A hook for the buyer</h3><p>The first line speaks to the person who wants their own shop, before the space is mentioned.</p></li>
+      <li><h3>AI presenter</h3><p>An on-screen host in branded uniform delivers the script to camera.</p></li>
+      <li><h3>Product shots</h3><p>Fruit and blender close-ups make the idea feel real in under four seconds.</p></li>
+      <li><h3>Burned-in captions</h3><p>Every line is on screen with the brand name and number highlighted, so it works with the sound off.</p></li>
+      <li><h3>Brand in every frame</h3><p>The AMCOL logo stays in the corner from the first second to the last.</p></li>
+      <li><h3>A clear next step</h3><p>The ad closes on one action: the offer, the terms and the number to call.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="lux">
+  <div class="wrap">
+    <figure class="phone">
+      <div class="glass">
+      <video id="hydra" controls playsinline preload="metadata" poster="media/hydra-poster.jpg">
+        <source src="media/hydra-terrace-ad.mp4" type="video/mp4">
+        Your browser cannot play this video.
+      </video>
+      <span class="cam" aria-hidden="true"></span>
+      </div>
+    </figure>
+    <div class="lux-body">
+      <p class="mono">TikTok ad campaign · Luxury property</p>
+      <h2 class="disp">Hydra Terrace, shown <em>one room at a time</em></h2>
+      <p>A 45-second vertical ad I made for a luxury townhouse in Otaheite, South Trinidad. It opens on the rooftop sea view, walks the buyer through the house with one selling point per shot, and ends on a single action: book a private viewing.</p>
+      <div class="facts"><span>9:16 vertical</span><span>45 sec</span><span>10 shots</span><span>On-screen captions</span><span>Branded end card</span></div>
+      <div class="funnel">
+        <p><b>Where the ad sends people.</b> Viewers who tap through land on the Hydra Terrace listing site, built for overseas buyers with a photo gallery, flight times from North America and a guide to buying as a US citizen. I used it to book viewings with clients.</p>
+        <a class="site" href="https://hydra-terrace.vercel.app/" target="_blank" rel="noopener">Visit hydra-terrace.vercel.app ↗</a>
+      </div>
+      <ol data-for="hydra">
+          <li><button class="shot" type="button" data-t="0"><time>0:00</time><b>“This is the top floor.”</b></button></li>
+          <li><button class="shot" type="button" data-t="3"><time>0:03</time><b>Hydra Terrace, Otaheite</b></button></li>
+          <li><button class="shot" type="button" data-t="5.97"><time>0:06</time><b>Covered 3-car garage</b></button></li>
+          <li><button class="shot" type="button" data-t="9.93"><time>0:10</time><b>4 bed · 3 levels</b></button></li>
+          <li><button class="shot" type="button" data-t="13.9"><time>0:14</time><b>Quartz counters, herringbone floors</b></button></li>
+          <li><button class="shot" type="button" data-t="17.87"><time>0:18</time><b>Room for the whole family</b></button></li>
+          <li><button class="shot" type="button" data-t="20.83"><time>0:21</time><b>The bathroom</b></button></li>
+          <li><button class="shot" type="button" data-t="23.8"><time>0:24</time><b>Four private balconies</b></button></li>
+          <li><button class="shot" type="button" data-t="32.73"><time>0:33</time><b>1,080 sq ft rooftop terrace</b></button></li>
+          <li><button class="shot" type="button" data-t="39.7"><time>0:40</time><b>Book a private viewing</b></button></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="camp">
+  <div class="wrap">
+    <div class="camp-grid">
+      <div>
+        <p class="mono">Campaign · AMCOL</p>
+        <h2 class="disp" style="margin-top:8px">Container homes, sold through social ads</h2>
+        <p class="lead" style="margin-top:16px">AMCOL had foldable container homes to sell. I filmed the video ads, appeared in them, and ran the paid Facebook and Instagram campaigns that brought in the buyers.</p>
+        <ol class="flow" style="margin-top:34px">
+          <li><b>Film</b><span>Shoot and front the product video</span></li>
+          <li><b>Launch</b><span>Paid ads on Facebook and Instagram</span></li>
+          <li><b>Follow up</b><span>Handle the enquiries that come in</span></li>
+          <li><b>Sell</b><span>4 homes sold</span></li>
+          <i aria-hidden="true"></i>
+        </ol>
+        <div class="nums">
+          <div><b>4</b><span>container homes sold</span></div>
+          <div><b>TT$20k</b><span>approx. per unit</span></div>
+          <div><b>TT$80k</b><span>approx. total sales</span></div>
+        </div>
+      </div>
+      <ul class="roles">
+        <li><small>AMCOL</small><b>AI video ads</b><span>I produce finished ads with AI tools, like the two AMCOL ads on this page.</span></li>
+        <li><small>Property</small><b>TikTok ad campaigns</b><span>I make vertical video ads for luxury property listings, like the Hydra Terrace ad above.</span></li>
+        <li><small>AMCOL Hardware</small><b>On camera</b><span>I present product video ads for AMCOL Hardware's social media, including TikTok.</span></li>
+        <li><small>AMCOL Hardware</small><b>Behind the camera</b><span>I film the product videos as well as appearing in them.</span></li>
+        <li><small>AMCOL</small><b>Paid campaigns</b><span>I set up and run Facebook and Instagram ad campaigns that lead to real sales.</span></li>
+        <li><small>Freelance · since 2022</small><b>Social media management</b><span>I manage social media and produce video for small-business clients.</span></li>
+        <li><small>AMCOL · 2020</small><b>Product copy</b><span>I wrote SEO-optimized product descriptions and managed online product placement.</span></li>
+      </ul>
+    </div>
+
+    <article class="spec">
+      <figure>
+        <img src="media/container.jpg" alt="20 ft foldable container home: white steel frame, grey panels, blue steel door and a barred window" width="1200" height="534">
+        <figcaption class="mono">The unit as supplied · entry end and long side</figcaption>
+      </figure>
+      <div class="spec-body">
+        <p class="mono">The product I was selling</p>
+        <h3 class="disp">20 ft foldable container home</h3>
+        <p>An insulated steel-frame unit that ships flat and unfolds on site, with a lockable steel door, two barred windows and the electrics already in.</p>
+        <dl>
+          <div><dt>Floor area</dt><dd>14.3 m² <small>154 ft²</small></dd></div>
+          <div><dt>Length</dt><dd>5,800 mm <small>19′ 0″</small></dd></div>
+          <div><dt>Width</dt><dd>2,460 mm <small>8′ 1″</small></dd></div>
+          <div><dt>Height</dt><dd>2,510 mm <small>8′ 3″</small></dd></div>
+          <div><dt>Walls</dt><dd>50 mm <small>rock wool sandwich panel</small></dd></div>
+          <div><dt>Weight</dt><dd>≈ 840 kg <small>1,850 lb</small></dd></div>
+          <div><dt>Electrical</dt><dd>3 sockets <small>plus 1 LED light, pre-installed</small></dd></div>
+        </dl>
+        <p class="src">Figures from AMCOL Hardware's product specification sheet. Dimensions are nominal external sizes and weight is approximate.</p>
+      </div>
+    </article>
+  </div>
+</section>
+</main>
+
+<footer class="end">
+  <div class="wrap">
+    <p class="mono">Work with me</p>
+    <h2 class="disp">Need an ad <em>this week?</em></h2>
+    <p>Tell me what you are selling and who should see it. I will come back with a script and a first cut.</p>
+    <div class="reach">
+      <code id="email">justin.poulido@outlook.com</code>
+      <button type="button" data-copy="justin.poulido@outlook.com" data-sel="email">Copy email</button>
+    </div>
+    <div class="reach">
+      <code id="phone">+1 (868) 478-5779</code>
+      <button type="button" data-copy="+18684785779" data-sel="phone">Copy number</button>
+    </div>
+    <div class="foot mono"><a href="./">← Back to full profile</a><span>Penal, Trinidad and Tobago</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+document.querySelectorAll('ol[data-for]').forEach(ol=>{
+  const v=document.getElementById(ol.dataset.for), shots=[...ol.querySelectorAll('.shot')];
+  const mark=()=>{const t=v.currentTime;let cur=null;shots.forEach(s=>{if(t>=+s.dataset.t-.05)cur=s;});shots.forEach(s=>s.classList.toggle('on',s===cur&&(t>0||!v.paused)));};
+  shots.forEach(s=>s.addEventListener('click',()=>{
+    const go=()=>{document.querySelectorAll('video').forEach(o=>{if(o!==v)o.pause();});v.currentTime=+s.dataset.t;const p=v.play();if(p&&p.catch)p.catch(()=>{});shots.forEach(x=>x.classList.toggle('on',x===s));};
+    if(v.readyState>=1)go();else{v.addEventListener('loadedmetadata',go,{once:true});v.load();}
+  }));
+  v.addEventListener('timeupdate',mark);
+  v.addEventListener('play',()=>document.querySelectorAll('video').forEach(o=>{if(o!==v)o.pause();}));
+});
+document.querySelectorAll('button[data-copy]').forEach(btn=>btn.addEventListener('click',()=>{
+  const label=btn.textContent, back=()=>setTimeout(()=>btn.textContent=label,1800);
+  const select=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById(btn.dataset.sel));const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected';back();};
+  try{navigator.clipboard.writeText(btn.dataset.copy).then(()=>{btn.textContent='Copied';back();},select);}catch(e){select();}
+}));
+})();
+</script>
+</body>
+</html>
