@@ -317,6 +317,9 @@ main{position:relative;overflow-x:clip}
 .contact h2 em{color:var(--sun)}
 .contact h2 .sq{--c:var(--coral)}
 .mail button{background:var(--coral)}
+.wa{--wa:#25D366;align-self:flex-start;display:inline-flex;align-items:center;gap:12px;padding:14px 26px 14px 20px;border-radius:999px;background:var(--wa);color:#06250F;font-weight:700;font-size:1.1rem;text-decoration:none;box-shadow:5px 5px 0 var(--sun);transition:transform .15s,box-shadow .15s}
+.wa:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 var(--sun)}
+.wa svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .plane{position:absolute;right:max(20px,env(safe-area-inset-right,0px));top:clamp(40px,7vw,84px);width:clamp(120px,22vw,250px);color:var(--sky);display:flex;flex-direction:column;align-items:flex-end;gap:2px;pointer-events:none}
 .plane svg{position:static;width:100%;height:auto}
 .plane .hand{color:var(--sun);transform:rotate(-6deg);margin-right:18%}
@@ -500,6 +503,7 @@ main{position:relative;overflow-x:clip}
     <p class="mono">Contact</p>
     <h2>Have a system that needs <em class="sq">building?</em></h2>
     <p>Tell me what your business does by hand today. I will tell you what can be built, automated or cleaned up, and how long it should take.</p>
+    <a class="wa" href="https://wa.me/18684785779?text=Hey%20Justin%2C%20I%27m%20interested%20in%20some%20of%20the%20services%20you%20are%20offering." target="_blank" rel="noopener"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4a12 12 0 0 0-10.3 18.1L4 28l6.1-1.6A12 12 0 1 0 16 4z"/><path d="M11 13h10M11 18h6"/></svg>Connect via WhatsApp</a>
     <div class="mail">
       <code id="email">justin.poulido@outlook.com</code>
       <button id="copy" type="button">Copy email</button>
