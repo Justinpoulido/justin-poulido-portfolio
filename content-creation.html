@@ -11,7 +11,7 @@
 :root{
   color-scheme:light;
   --mango:#FFC93C; --ink:#1A1410; --paper:#FFF6E0; --berry:#C2185B; --berry-ink:#FFFFFF;
-  --soft:#5A4526; --rule:rgba(26,20,16,.22); --night-soft:#C9B894;
+  --soft:#5A4526; --lagoon:#0C463D; --rule:rgba(26,20,16,.22); --night-soft:#C9B894;
   --display:"Anton","Arial Narrow","Impact",sans-serif;
   --body:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --mono:"DM Mono",ui-monospace,Menlo,monospace;
@@ -143,6 +143,33 @@ button{font:inherit;color:inherit;cursor:pointer}
 .facts span{font-family:var(--mono);font-size:.74rem;padding:6px 10px;border-radius:6px;border:1px solid rgba(255,246,224,.35)}
 @media (max-width:860px){.lux .wrap{grid-template-columns:minmax(0,1fr)}.phone{justify-self:center}}
 @media (max-width:480px){.lux ol{grid-template-columns:minmax(0,1fr)}}
+
+.lakes{background:var(--lagoon);color:var(--paper)}
+.lakes .wrap{padding-block:clamp(48px,7vw,88px);display:flex;flex-direction:column;gap:30px}
+.lakes-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:end}
+.lakes-head .mono{color:var(--mango);margin-bottom:10px}
+.lakes h2{font-size:clamp(2.2rem,6vw,4.2rem)}
+.lakes h2 em{font-style:normal;color:var(--mango)}
+.lakes-head>p{color:#D5E6DF;max-width:54ch}
+.lakes-main{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:clamp(22px,4vw,40px);align-items:start}
+.lakes .player{box-shadow:12px 12px 0 var(--mango)}
+.clips{display:flex;flex-direction:column;gap:14px;min-width:0}
+.clips>div[role="group"]{display:flex;flex-direction:column;border-top:2px solid var(--paper)}
+.lakes .shot{grid-template-columns:110px minmax(0,1fr);border-bottom-color:rgba(255,246,224,.25);padding:12px 8px 12px 0}
+.lakes .shot img{width:110px;border-color:var(--paper)}
+.lakes .shot small{color:#BFD6CD}
+.lakes .shot:hover{background:rgba(255,246,224,.08)}
+.lakes .shot[aria-pressed="true"]{background:var(--mango);color:var(--ink);padding-left:10px;border-radius:8px}
+.lakes .shot[aria-pressed="true"] small{color:var(--soft)}
+.lakes .shot[aria-pressed="true"] img{border-color:var(--ink)}
+.lakes .facts span{border-color:rgba(255,246,224,.4)}
+.lakes .site{align-self:flex-start}
+.stills{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,3vw,28px)}
+.stills figure{display:flex;flex-direction:column;gap:10px;min-width:0}
+.stills img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;border-radius:14px;border:2px solid var(--paper)}
+.stills figcaption{color:#BFD6CD}
+@media (max-width:860px){.lakes-head,.lakes-main{grid-template-columns:minmax(0,1fr)}.lakes .player{box-shadow:8px 8px 0 var(--mango)}}
+@media (max-width:560px){.stills{grid-template-columns:minmax(0,1fr)}}
 
 .end{background:var(--ink);color:var(--paper)}
 .end .wrap{padding-block:clamp(48px,7vw,88px);display:flex;flex-direction:column;gap:22px}
@@ -280,6 +307,39 @@ button{font:inherit;color:inherit;cursor:pointer}
   </div>
 </section>
 
+<section class="lakes">
+  <div class="wrap">
+    <div class="lakes-head">
+      <div>
+        <p class="mono">Drone, video and photography · Infinity Lakes</p>
+        <h2 class="disp">A private estate, <em>from the air</em></h2>
+      </div>
+      <p>I shot drone footage, video and photographs for Infinity Lakes, a luxury private estate. The estate featured my footage on its own social media pages.</p>
+    </div>
+    <div class="lakes-main">
+      <figure class="player">
+        <video id="lake" controls muted loop playsinline preload="metadata" poster="media/lakes-flyover.jpg">
+          <source src="media/lakes-flyover.mp4" type="video/mp4">
+          Your browser cannot play this video.
+        </video>
+        <figcaption class="mono"><span id="lakecap">Estate flyover</span><span>Drone footage · no sound</span></figcaption>
+      </figure>
+      <div class="clips">
+        <div role="group" aria-label="Choose a clip">
+          <button class="shot" type="button" aria-pressed="true" data-clip="media/lakes-flyover.mp4" data-poster="media/lakes-flyover.jpg" data-cap="Estate flyover"><img src="media/lakes-flyover.jpg" alt="" width="1280" height="720"><span><time>1:10</time><b>Estate flyover</b><small>From the entrance road out across the greens.</small></span></button>
+          <button class="shot" type="button" aria-pressed="false" data-clip="media/lakes-fairway.mp4" data-poster="media/lakes-fairway.jpg" data-cap="Over the greens"><img src="media/lakes-fairway.jpg" alt="" width="1280" height="720"><span><time>0:29</time><b>Over the greens</b><small>A low pull-back that rises to show the whole estate.</small></span></button>
+        </div>
+        <div class="facts"><span>Drone pilot</span><span>Aerial video</span><span>Photography</span><span>Featured by the client</span></div>
+        <a class="site" href="https://www.instagram.com/infinitylakes" target="_blank" rel="noopener">See @infinitylakes on Instagram ↗</a>
+      </div>
+    </div>
+    <div class="stills">
+      <figure><img src="media/lakes-sunset.jpg" alt="Sunset over the estate with a mountain range behind a row of townhouses" width="1400" height="1050"><figcaption class="mono">Sunset across the estate</figcaption></figure>
+      <figure><img src="media/lakes-water.jpg" alt="The estate lake at water level under a cloudy sky" width="1400" height="1050"><figcaption class="mono">The lake at water level</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <section class="camp">
   <div class="wrap">
     <div class="camp-grid">
@@ -303,6 +363,7 @@ button{font:inherit;color:inherit;cursor:pointer}
       <ul class="roles">
         <li><small>AMCOL</small><b>AI video ads</b><span>I produce finished ads with AI tools, like the two AMCOL ads on this page.</span></li>
         <li><small>Property</small><b>TikTok ad campaigns</b><span>I make vertical video ads for luxury property listings, like the Hydra Terrace ad above.</span></li>
+        <li><small>Infinity Lakes</small><b>Drone and photography</b><span>I fly and shoot aerial video and stills for property clients.</span></li>
         <li><small>AMCOL Hardware</small><b>On camera</b><span>I present product video ads for AMCOL Hardware's social media, including TikTok.</span></li>
         <li><small>AMCOL Hardware</small><b>Behind the camera</b><span>I film the product videos as well as appearing in them.</span></li>
         <li><small>AMCOL</small><b>Paid campaigns</b><span>I set up and run Facebook and Instagram ad campaigns that lead to real sales.</span></li>
@@ -365,6 +426,13 @@ document.querySelectorAll('ol[data-for]').forEach(ol=>{
   v.addEventListener('timeupdate',mark);
   v.addEventListener('play',()=>document.querySelectorAll('video').forEach(o=>{if(o!==v)o.pause();}));
 });
+document.querySelectorAll('button[data-clip]').forEach(btn=>btn.addEventListener('click',()=>{
+  const v=document.getElementById('lake');
+  document.querySelectorAll('button[data-clip]').forEach(b=>b.setAttribute('aria-pressed',b===btn));
+  document.getElementById('lakecap').textContent=btn.dataset.cap;
+  v.poster=btn.dataset.poster; v.src=btn.dataset.clip; v.load();
+  const p=v.play(); if(p&&p.catch)p.catch(()=>{});
+}));
 document.querySelectorAll('button[data-copy]').forEach(btn=>btn.addEventListener('click',()=>{
   const label=btn.textContent, back=()=>setTimeout(()=>btn.textContent=label,1800);
   const select=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById(btn.dataset.sel));const s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected';back();};
